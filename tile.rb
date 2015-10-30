@@ -1,10 +1,8 @@
-require_relative "board.rb"
-
 class Tile
 
   attr_reader :bomb
 
-  def initialize(board, pos, bomb = false)
+  def initialize(pos, board, bomb = false)
     @board = board
     @pos = pos
     @bomb = bomb
@@ -14,7 +12,7 @@ class Tile
 
   def reveal
     @revealed = true unless @flagged
-    
+
   end
 
   def neighbors
@@ -29,5 +27,14 @@ class Tile
     near_tiles
   end
 
+  def inspect
+    # "[Tile pos=#{@pos}, bomb=#{@bomb}, flagged=#{@flagged}, revealed=#{@revealed}]"
+    "[ TILE pos=#{@pos}, bomb=#{@bomb}]"
+  end
+
 
 end
+
+
+t = Tile.new([9,6],9)
+p t
