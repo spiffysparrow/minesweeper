@@ -14,6 +14,7 @@ class Tile
 
   def reveal
     @revealed = true unless @flagged
+    
   end
 
   def neighbors
