@@ -1,6 +1,6 @@
 class Tile
 
-  attr_reader :bomb
+  attr_accessor :bomb
 
   def initialize(pos, board, bomb = false)
     @board = board
@@ -12,7 +12,6 @@ class Tile
 
   def reveal
     @revealed = true unless @flagged
-
   end
 
   def neighbors
@@ -20,8 +19,9 @@ class Tile
     (-1..1).each do |row|
       (-1..1).each do |col|
         new_pos = [@pos[0] + row, @pos[1] + col]
-        # don't add off board
-        near_tiles << new_pos unless new_pos == @pos
+        unless new_pos.any? { |el| el > @board.length || el < 0}
+          near_tiles << new_pos unless new_pos == @pos
+        end
       end
     end
     near_tiles
@@ -37,4 +37,3 @@ end
 
 
 t = Tile.new([9,6],9)
-p t
